@@ -10,12 +10,12 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="https://js.pusher.com/4.1/pusher.min.js"></script> # add Pusher script
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="container"> # add this block of code
+    <div class="container">
       <% if notice %>
         <div class="alert alert-info alert-dismissible fade show" role="alert">
           <p class="notice m-0"><%= notice %></p>
@@ -32,7 +32,7 @@
           </button>
         </div>
       <% end %>
-    </div> # code block ends here
+    </div>
     <%= yield %>
   </body>
 </html>
