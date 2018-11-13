@@ -22,8 +22,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *default
-  database: pusher-online-presence_development
+  adapter: postgresql
+  encoding: unicode
+  database: classpresence_development
+  pool: 5
+  username: classpresence
+  password: cl4$$\_pr3$3nc3
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
