@@ -28,6 +28,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        PostMailer.admin_notice(@post).deliver_later
+
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
