@@ -16,9 +16,41 @@ class Proxy
   def initialize(target_object)
     @object = target_object
     # ADD MORE CODE HERE
+    @message_dict = Hash.new
   end
 
   # WRITE CODE HERE
+  def method_missing(method_name, *args, &block)
+    symbol = method_name.to_s.to_sym
+
+    case true
+    when method_name.to_s[0,3] == "cal"
+      @message_dict.key?(args[0])
+    when method_name.to_s[0,3] == "num"
+      if @message_dict.key?(args[0])
+        @message_dict[args[0]]
+      else
+        0
+      end
+    when method_name.to_s[0,3] == "mes"
+      @message_dict.keys()
+    else
+      self.count_method(symbol)
+      if args.length > 0
+        @object.send(method_name, args[0])
+      else
+        @object.send(method_name)
+      end
+    end
+  end
+
+  def count_method(symbol)
+    if @message_dict.key?(symbol)
+      @message_dict[symbol] += 1
+    else
+      @message_dict[symbol] = 1
+    end
+  end
 end
 
 # The proxy object should pass the following Koan:
